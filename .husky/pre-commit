@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+echo "pre-commit Hook running..."
+npx lint-staged
+npm run lint
+git add 'README.md'

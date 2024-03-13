@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        /*
+            The following configurations can be used to debug the game. 
+            Replace the port in the `url` property with the process.env.PORT value.
+            Run `npm start` to start the process.
+            Lunch the debugger with the desired config from VSCode.
+        */
+        {
+            "name": "Launch Chrome", 
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}",
+            // This skip file configuration allows us to step over external code but still step into our IG libs. 
+            // The last line can be removed if stepping into IG libs becomes a pain while debugging.
+            "skipFiles": [
+                "<node_internals>/**",
+                "${workspaceRoot}/node_modules/**/*.js",
+                "!${workspaceRoot}/node_modules/@incentivegames/**/*.js"
+            ],
+        },
+        {
+            "name": "Launch Edge",
+            "request": "launch",
+            "type": "pwa-msedge",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}",
+            // This skip file configuration allows us to step over external code but still step into our IG libs. 
+            // The last line can be removed if stepping into IG libs becomes a pain while debugging.
+            "skipFiles": [
+                "<node_internals>/**",
+                "${workspaceRoot}/node_modules/**/*.js",
+                "!${workspaceRoot}/node_modules/@incentivegames/**/*.js"
+            ],
+        }
+    ]
+}

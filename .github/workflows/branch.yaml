@@ -1,0 +1,58 @@
+name: Branch
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:
+      - '**' # Push events on all branches
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.aws_access_key_id }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.aws_secret_access_key }}
+  AWS_DEFAULT_REGION: eu-west-2
+  S3_BUCKET: arg-websites
+  VITE_GAME_TYPE: 'portfolio'
+
+jobs:
+  reablace-dev:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        node-version: [18.17]
+        env: [dev]
+        include:
+          - env: dev
+            app-name: 'Portfolio Dev'
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build
+        env:
+          NODE_ENV: development
+          CI: false #to avoid warnings for now.
+          VITE_SITE_ID: ${{ matrix.site-id }}
+          VITE_APP_NAME: ${{ matrix.app-name }}
+          VITE_ID: portfolio
+        run: |
+          npm ci
+          npm run build --if-present
+      - name: Sync files to S3
+        env:
+          ENV: ${{ matrix.env }}
+        run: |
+          echo $GITHUB_REPOSITORY
+          export REPO=`echo $GITHUB_REPOSITORY | sed 's/^Aramosgr\///'`
+          echo $GITHUB_REF
+          export TAG=`echo $GITHUB_REF | sed 's/^refs\/heads\///'`
+          if [ $TAG = "master" ]; then export TAG=latest; fi
+          echo "$REPO:$TAG"
+          if [ $TAG = "latest" ]; then
+            echo "Synching to $S3_BUCKET..."
+            aws s3 sync ./build/ s3://$S3_BUCKET/$VITE_GAME_TYPE/$ENV/$TAG --delete
+          else
+            echo "Not deploying for $TAG"
+          fi

@@ -1,0 +1,111 @@
+{
+  "name": "portfolio",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@storybook/react-vite": "^7.2.1",
+    "@tanstack/react-query": "^4.32.6",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/crypto-js": "^4.1.1",
+    "@types/jest": "^29.5.3",
+    "@types/react-dom": "^18.2.7",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/smoothscroll-polyfill": "^0.3.1",
+    "axios": "^1.4.0",
+    "crypto-js": "^4.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-ga": "^3.3.1",
+    "react-i18next": "^11.15.3",
+    "react-router-dom": "^6.14.2",
+    "react-test-renderer": "^18.2.0",
+    "resize-observer": "^1.0.4",
+    "sass": "^1.64.2",
+    "smoothscroll-polyfill": "^0.4.4",
+    "storybook": "^7.2.1",
+    "typescript": "^5.1.6",
+    "universal-cookie": "^4.0.4",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^7.2.1",
+    "@storybook/addon-essentials": "^7.2.1",
+    "@storybook/addon-interactions": "^7.2.1",
+    "@storybook/addon-links": "^7.2.1",
+    "@storybook/node-logger": "^7.2.1",
+    "@storybook/preset-create-react-app": "^7.2.1",
+    "@storybook/react": "^7.2.1",
+    "@storybook/testing-library": "^0.2.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.0.0",
+    "@vitejs/plugin-react": "^4.0.4",
+    "@vitest/coverage-istanbul": "^0.34.1",
+    "@wdio/cli": "^8.14.4",
+    "@wdio/local-runner": "^8.14.3",
+    "@wdio/mocha-framework": "^8.14.0",
+    "@wdio/spec-reporter": "^8.14.0",
+    "@wdio/sync": "^7.27.0",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-react-app": "^7.0.1",
+    "husky": "^8.0.3",
+    "istanbul-badges-readme": "^1.8.5",
+    "jsdom": "^22.1.0",
+    "lint-staged": "^13.2.3",
+    "msw": "^1.2.3",
+    "prettier": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "vite": "^4.4.9",
+    "vite-plugin-svgr": "^3.2.0",
+    "vitest": "^0.34.1"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest",
+    "test-without-watch": "vitest run",
+    "test-without-watch:coverage": "vitest run --coverage",
+    "e2e": "npx wdio wdio.conf.js",
+    "lint-staged": "npx lint-staged --allow-empty",
+    "lint": "npx eslint ./src --ext .js,.ts,.tsx --max-warnings=0",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write \"**/*.{js,ts,tsx,css,md,scss,json}\"",
+    "prepare": "husky install",
+    "make-badges": "istanbul-badges-readme --style=\"for-the-badge\" --logo=\"jest\"",
+    "storybook": "storybook dev -p 6006 -s public",
+    "build-storybook": "storybook build -s public"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "prettier"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --fix",
+    "*.{js,ts,tsx,css,md,scss,json}": "prettier --write"
+  }
+}
