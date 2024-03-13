@@ -48,7 +48,7 @@ jobs:
           export REPO=`echo $GITHUB_REPOSITORY | sed 's/^Aramosgr\///'`
           echo $GITHUB_REF
           export TAG=`echo $GITHUB_REF | sed 's/^refs\/heads\///'`
-          if [ $TAG = "master" ]; then export TAG=latest; fi
+          if [ $TAG = "main" ]; then export TAG=latest; fi
           echo "$REPO:$TAG"
           if [ $TAG = "latest" ]; then
             echo "Synching to $S3_BUCKET..."
