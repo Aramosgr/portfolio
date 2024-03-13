@@ -39,6 +39,7 @@
     "@storybook/testing-library": "^0.2.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
+    "@types/node": "^20.11.27",
     "@vitejs/plugin-react": "^4.0.4",
     "@vitest/coverage-istanbul": "^0.34.1",
     "@wdio/cli": "^8.14.4",
